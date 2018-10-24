@@ -1,6 +1,10 @@
 import React from 'react'
+import moment from 'moment'
 
 const Notifications = (props) =>{
+
+    const {notifications} = props;
+    console.log(notifications)
 
     return(
         <div className="section">
@@ -10,18 +14,19 @@ const Notifications = (props) =>{
                         Notifications
                     </span>
                     <ul className="notifications">
-                        <li>
-                            Notification
-                        </li>
-                        <li>
-                            Notification
-                        </li>
-                        <li>
-                            Notification
-                        </li>
-                        <li>
-                            Notification
-                        </li>
+                        {notifications && notifications.map(item=> {
+                            return(
+                                <li key={item.id}>
+                                    <span className="pink-text">{item.user} </span>
+                                    <span className="pink-text">
+                                        {item.content}
+                                    </span>
+                                    <div className="grey-text note-date">
+                                        {moment(item.time.toDate()).fromNow()}
+                                    </div>
+                                </li>
+                            )
+                        })}
                     </ul>
                 </div>
             </div>
